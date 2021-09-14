@@ -34,12 +34,30 @@ def move():
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
-
+    
+    # Si se encuentra a punto de chocar con el lado izquierdo/derecho del canvas
+    if head.x == -190:
+        if -200 < head.y < 96:
+            "Cuadrante izquierdo abajo"
+            change(0,10)  
+        else:
+            "Cuadrante derecho abajo"
+            change(0,-10)
+    
+    
+    # Si se encuentra a punto de chocar con el lado de abajo/arriba del canvas
+    if head.y == -190 or head.y == 180:
+        if -200 < head.x < 96:
+            "Cuadrante izquierdo abajo"
+            change(10,0)
+        else:
+            "Cuadrante derecho abajo"
+            change(-10,0)
+    
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
         update()
         return
-
     snake.append(head)
 
     if head == food:
@@ -58,7 +76,7 @@ def move():
     update()
     ontimer(move, 100)
 
-#ca
+
 
 setup(420, 420, 370, 0)
 hideturtle()
