@@ -16,8 +16,9 @@ from freegames import square, vector
 
 food = vector(0, 0)
 
+
 def speed():
-    "El jugador elige la velocidad de la serpiente por medio de esta función"
+    "The player can choose the speed of the game by means of this function"
     print("Bienvenido a Snake, para comenzar, tendrás lo opción de elegir la velocidad de la serpiente:")
     print("1. Lento")
     print("2. Medio")
@@ -33,13 +34,13 @@ def speed():
     else:
         print("UPS, esa no es una opcion valida, selecciona una de las velocidades ingresando su número correspondiente.")
         exit
-    
+
     return s
+
 
 s = speed()     # speed
 aim = vector(0, s)
 snake = [vector(s * -1, 0)]
-
 
 
 def change(x, y):
@@ -66,19 +67,19 @@ def move():
     # Si se encuentra a punto de chocar con el lado izquierdo/derecho del canvas
     if head.x == -190 or head.x == 180:
         if -200 < head.y < -5:
-            "Cuadrante izquierdo abajo"
+            "Left quadrant down"
             change(0, 10)
         if -5 < head.y < 190:
-            "Cuadrante derecho abajo"
+            "Right quadrant down"
             change(0, -10)
 
-    # Si se encuentra a punto de chocar con el lado de abajo/arriba del canvas
+    # If it is about to collide with the bottom / top side of the canvas
     if head.y == -190 or head.y == 180:
         if -200 < head.x < -5:
-            "Cuadrante izquierdo abajo"
+            "Left quadrant down"
             change(10, 0)
         if -5 < head.y < 190:
-            "Cuadrante derecho abajo"
+            "Right quadrant down"
             change(-10, 0)
 
     if not inside(head) or head in snake:
@@ -116,6 +117,6 @@ onkey(lambda: change(s * -1, 0), 'd')
 onkey(lambda: change(s, 0), 'a')
 onkey(lambda: change(0, s * -1), 'w')
 onkey(lambda: change(0, s), 's')
-onkey(lambda: change_food(food), 'q') # Change food location
+onkey(lambda: change_food(food), 'q')  # Change food location
 move()
 done()
