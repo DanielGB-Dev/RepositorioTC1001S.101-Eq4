@@ -16,7 +16,31 @@ from freegames import square, vector
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
-aim = vector(0, -10)
+
+
+def speed():
+    "El jugador elige la velocidad de la serpiente por medio de esta función"
+    print("Bienvenido a Snake, para comenzar, tendrás lo opción de elegir la velocidad de la serpiente:")
+    print("1. Lento")
+    print("2. Medio")
+    print("3. Rapido")
+    x = input("¿Qué velocidad prefieres? = ")
+
+    if x == 1:
+        aim = vector(0, -5)
+        return aim
+    elif x == 2:
+        aim = vector(0, -10)
+        return aim
+    elif x == 3:
+        aim = vector(0, -15)
+        return aim
+    else:
+        print("UPS, esa no es una opcion valida, selecciona una de las velocidades ingresando su número correspondiente.")
+        exit
+
+
+aim = speed()
 
 
 def change(x, y):
@@ -34,26 +58,25 @@ def move():
     "Move snake forward one segment."
     head = snake[-1].copy()
     head.move(aim)
-    
+
     # Si se encuentra a punto de chocar con el lado izquierdo/derecho del canvas
     if head.x == -190 or head.x == 180:
         if -200 < head.y < 96:
             "Cuadrante izquierdo abajo"
-            change(0,10)  
+            change(0, 10)
         else:
             "Cuadrante derecho abajo"
-            change(0,-10)
-    
-    
+            change(0, -10)
+
     # Si se encuentra a punto de chocar con el lado de abajo/arriba del canvas
     if head.y == -190 or head.y == 180:
         if -200 < head.x < 96:
             "Cuadrante izquierdo abajo"
-            change(10,0)
+            change(10, 0)
         else:
             "Cuadrante derecho abajo"
-            change(-10,0)
-    
+            change(-10, 0)
+
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
         update()
@@ -77,7 +100,6 @@ def move():
     ontimer(move, 100)
 
 
-
 setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
@@ -87,4 +109,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+print(aim)
 done()
