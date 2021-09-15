@@ -15,8 +15,6 @@ from turtle import *
 from freegames import square, vector
 
 food = vector(0, 0)
-snake = [vector(10, 0)]
-
 
 def speed():
     "El jugador elige la velocidad de la serpiente por medio de esta función"
@@ -24,23 +22,24 @@ def speed():
     print("1. Lento")
     print("2. Medio")
     print("3. Rapido")
-    x = input("¿Qué velocidad prefieres? = ")
+    x = int(input("¿Qué velocidad prefieres? = "))
 
     if x == 1:
-        aim = vector(0, -5)
-        return aim
+        s = -10
     elif x == 2:
-        aim = vector(0, -10)
-        return aim
+        s = -20
     elif x == 3:
-        aim = vector(0, -15)
-        return aim
+        s = -30
     else:
         print("UPS, esa no es una opcion valida, selecciona una de las velocidades ingresando su número correspondiente.")
         exit
+    
+    return s
 
+s = speed()     # speed
+aim = vector(0, s)
+snake = [vector(s * -1, 0)]
 
-aim = speed()
 
 
 def change(x, y):
@@ -52,6 +51,11 @@ def change(x, y):
 def inside(head):
     "Return True if head inside boundaries."
     return -200 < head.x < 190 and -200 < head.y < 190
+
+
+def change_food(food):
+    food.x = randrange(-15, 15) * 10
+    food.y = randrange(-15, 15) * 10
 
 
 def move():
@@ -104,10 +108,14 @@ setup(420, 420, 370, 0)
 hideturtle()
 tracer(False)
 listen()
-onkey(lambda: change(10, 0), 'Right')
-onkey(lambda: change(-10, 0), 'Left')
-onkey(lambda: change(0, 10), 'Up')
-onkey(lambda: change(0, -10), 'Down')
+onkey(lambda: change(s * -1, 0), 'Right')
+onkey(lambda: change(s, 0), 'Left')
+onkey(lambda: change(0, s * -1), 'Up')
+onkey(lambda: change(0, s), 'Down')
+onkey(lambda: change(s * -1, 0), 'd')
+onkey(lambda: change(s, 0), 'a')
+onkey(lambda: change(0, s * -1), 'w')
+onkey(lambda: change(0, s), 's')
+onkey(lambda: change_food(food), 'q') # Change food location
 move()
-print(aim)
 done()
