@@ -64,7 +64,7 @@ def move():
     head = snake[-1].copy()
     head.move(aim)
 
-    # Si se encuentra a punto de chocar con el lado izquierdo/derecho del canvas
+    # If it is about to collide with the left / right side of the canvas
     if head.x == -190 or head.x == 180:
         if -200 < head.y < -5:
             "Left quadrant down"
