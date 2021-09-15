@@ -61,19 +61,19 @@ def move():
 
     # Si se encuentra a punto de chocar con el lado izquierdo/derecho del canvas
     if head.x == -190 or head.x == 180:
-        if -200 < head.y < 96:
+        if -200 < head.y < -5:
             "Cuadrante izquierdo abajo"
             change(0, 10)
-        else:
+        if -5 < head.y < 190:
             "Cuadrante derecho abajo"
             change(0, -10)
 
     # Si se encuentra a punto de chocar con el lado de abajo/arriba del canvas
     if head.y == -190 or head.y == 180:
-        if -200 < head.x < 96:
+        if -200 < head.x < -5:
             "Cuadrante izquierdo abajo"
             change(10, 0)
-        else:
+        if -5 < head.y < 190:
             "Cuadrante derecho abajo"
             change(-10, 0)
 
