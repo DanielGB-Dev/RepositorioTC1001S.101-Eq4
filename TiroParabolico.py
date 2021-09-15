@@ -73,9 +73,9 @@ def move():
 
     for target in targets:
         if not inside(target):
-            return
+            target.x += 400 # It changes to it's original position.
 
-    ontimer(move, 50)
+    ontimer(move, 20) #From 50 to 20, it doubles the original speed.
 
 
 setup(420, 420, 370, 0)
