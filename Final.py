@@ -1,7 +1,15 @@
 import HCRfinal
 import pygame
 
+
 def redrawGameWindow(Dir, p1, p2):
+    """
+    Display animation window, updating the position of the images.
+
+    Args:
+        p1 (img): character img
+        p2 (img): character img
+    """
     global x, y, Side_A, Side_B
 
     win.blit(bg,(0,0))
@@ -30,7 +38,18 @@ def redrawGameWindow(Dir, p1, p2):
         win.blit(char,(x, y))
     pygame.display.update()
 
+
 def get_characters(d, p1, p2):
+    """
+    Check wich character is in list and returning his image
+
+    Args:
+        p1 (str): character string
+        p2 (str): character string
+
+    Returns:
+        img: return the images of the characters
+    """
     if p2 == 'Zorro':
         character = fox
     elif p2 == 'Maiz':
@@ -41,19 +60,44 @@ def get_characters(d, p1, p2):
         character = farmer
     return (d, farmer, character)
 
+
 def Embark_characters(B, p1, p2):
+    """
+    Check if characters ares in point A and embark those characters in the boat.
+
+    Args:
+        B (List): List of characters in point A.
+        p1 (string): Character
+        p2 (string): Character
+    """
     if p1 in B:
         B.remove(p1)     
     if p2 in B:
         B.remove(p2)
- 
+
+
 def Disembark_characters(A, p1, p2):
+    """
+    Check if characters ares in point B and disembark those characters in point B.
+
+    Args:
+        A (List): List of characters in point B.
+        p1 (string): Character
+        p2 (string): Character
+    """
     if p1 not in A:
         A.append(p1)
     if p2 not in A:
         A.append(p2)
-    
+
+
 def HCR_animacion(P):
+    """
+    Make animation, detect if user is moving to left or right and call methods to update the frame.
+
+    Args:
+        P (list): HCR solution
+    """
     global x, y, left, right, vel
     global Side_A, Side_B
 
@@ -97,7 +141,14 @@ def HCR_animacion(P):
         
     pygame.quit()
 
+
 def Busca_solucion():
+    """
+    Call HCRfinal functions until it finds the fastest possible solution.
+
+    Returns:
+        List: Fastest possible solution.
+    """
     P = HCRfinal.HCR()
     while len(P) > 22:
     #while len(P) > 42:
@@ -110,28 +161,28 @@ def Busca_solucion():
     return (P)
 
 
+# Call methods from HCRfinal and print lists.
 P = Busca_solucion()
+# Display the animation.
 print ('Aquí su animación')
-
 pygame.init()
-
 win = pygame.display.set_mode((500,500))
 pygame.display.set_caption("How to Cross the River")
 
-BoatRight   = pygame.image.load('BoteRight.png')
-BoatLeft    = pygame.image.load('BoteLeft.png')
-bg          = pygame.image.load('seaL.png')
-char        = pygame.image.load('BoteRight.png')
-fox         = pygame.image.load('fox.png')
-corn        = pygame.image.load('corn.png')
-duck        = pygame.image.load('duck.png')
-farmer      = pygame.image.load('farmer.png')
+# Variable Initialization
+BoatRight   = pygame.image.load('HCRImages\BoteRight.png')
+BoatLeft    = pygame.image.load('HCRImages\BoteLeft.png')
+bg          = pygame.image.load('HCRImages\seaL.png')
+char        = pygame.image.load('HCRImages/BoteRight.png')
+fox         = pygame.image.load('HCRImages/fox.png')
+corn        = pygame.image.load('HCRImages/corn.png')
+duck        = pygame.image.load('HCRImages/duck.png')
+farmer      = pygame.image.load('HCRImages/farmer.png')
 x       = 10
 y       = 425
 vel     = 5
 left    = False
 right   = False
-
 Side_A = [farmer, fox, duck, corn]
 Side_B = []
 
