@@ -49,7 +49,7 @@ print("Numero de repeticiones de cada plabra \n" + str(repeticiones))
 Create a figure with 10 subplots
 Every subplot contains five unique words with the number of repetitions in the GEH.txt file
 """
-fig, ax = plt.subplots(2,5,figsize=[15,5])
+fig, ax = plt.subplots(2,5,figsize=[14,5])
 fig.suptitle("Veces que se repite cada palabra en el cuento GEH")
 ax[0,0].hist(palabrasunicas[0:6],weights=repeticiones[0:6], width=0.3)
 ax[0,1].hist(palabrasunicas[6:11],weights=repeticiones[6:11], width=0.3)
