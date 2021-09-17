@@ -1,8 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
-
-
+# Run in terminal.
+# py -m pip install matplotlib 
 
 """ 
 palabras is an array that will contain the GEH.txt file separed word by word
@@ -14,7 +13,7 @@ palabrasunicas=[]
 repeticiones=[]
 
 """Open the GEH.txt file"""
-with open("GEH.txt") as texto:
+with open("GEH.txt") as texto: # Add your local path
     """Use for to get every line of the text"""
     for lineas in texto:
         """Transform every upper into lower in order to standardize words"""
